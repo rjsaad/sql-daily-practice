@@ -1,0 +1,56 @@
+-- Q1: Employees earning more than average salary
+SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+-- Q2: Employees in Karachi departments
+SELECT name, salary, dept_id
+FROM employees
+WHERE dept_id IN (
+    SELECT dept_id FROM departments WHERE location = 'Karachi'
+);
+
+-- Q3: Department with highest average salary
+SELECT dept_id, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY dept_id
+ORDER BY avg_salary DESC
+LIMIT 1;
+
+-- Q4: Employees earning more than their department average (Correlated)
+SELECT name, salary, dept_id
+FROM employees e1
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees e2
+    WHERE e2.dept_id = e1.dept_id
+);
+
+-- Q5: Employees earning more than their manager (Correlated)
+SELECT name, salary, manager_id
+FROM employees e1
+WHERE manager_id IS NOT NULL
+  AND salary > (
+      SELECT salary
+      FROM employees e2
+      WHERE e2.emp_id = e1.manager_id
+  );
+
+-- Q6: Customers who placed orders above 4000 (EXISTS)
+SELECT DISTINCT o1.customer_name
+FROM orders o1
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o2
+    WHERE o2.customer_name = o1.customer_name
+      AND o2.amount > 4000
+);
+
+-- Q7: Employees with no subordinates (NOT EXISTS)
+SELECT *
+FROM employees e1
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM employees e2
+    WHERE e2.manager_id = e1.emp_id
+);
