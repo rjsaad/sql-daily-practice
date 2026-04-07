@@ -1,0 +1,23 @@
+# SQL Practice – 2026-04-07
+
+## Topics
+- Subqueries
+- Correlated Subqueries
+- EXISTS / NOT EXISTS
+
+## Questions Attempted
+1. Employees earning more than average salary ✅
+2. Employees in Karachi departments ✅
+3. Department with highest average salary ✅
+4. Employees earning more than department avg ✅
+5. Employees earning more than manager ✅
+6. Customers who placed orders above 4000 ✅
+7. Employees with no subordinates ✅
+
+## Learnings
+- Single-row subqueries return one value, multi-row subqueries need IN
+- Correlated subqueries use the outer query value in the inner query
+- EXISTS and NOT EXISTS are great for checking presence or absence of rows
+- `manager_id` is a self-reference in the employees table
+- Always use IS NULL instead of `= NULL`
+- Using DISTINCT helps avoid duplicates in EXISTS queries
