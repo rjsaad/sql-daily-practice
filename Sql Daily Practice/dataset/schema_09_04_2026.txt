@@ -1,0 +1,19 @@
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    salesperson VARCHAR(50),
+    region VARCHAR(20),
+    sale_amount INT,
+    sale_date DATE
+);
+
+INSERT INTO sales (sale_id, salesperson, region, sale_amount, sale_date) VALUES
+(1, 'Alice', 'East', 500, '2026-04-01'),
+(2, 'Bob', 'East', 700, '2026-04-02'),
+(3, 'Charlie', 'West', 400, '2026-04-01'),
+(4, 'David', 'West', 600, '2026-04-03'),
+(5, 'Eve', 'North', 800, '2026-04-02'),
+(6, 'Frank', 'North', 700, '2026-04-03'),
+(7, 'Grace', 'East', 500, '2026-04-04'),
+(8, 'Heidi', 'West', 600, '2026-04-05'),
+(9, 'Ivan', 'North', 900, '2026-04-05'),
+(10, 'Judy', 'East', 700, '2026-04-05');
