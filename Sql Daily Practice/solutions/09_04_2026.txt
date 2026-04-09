@@ -1,0 +1,81 @@
+-- SQL Practice – 2026-04-09
+
+-- Q1: Row Number within region
+SELECT *, 
+       ROW_NUMBER() OVER(PARTITION BY region ORDER BY sale_amount DESC) AS row_num
+FROM sales;
+
+
+-- Q2: Rank within region
+SELECT *, 
+       RANK() OVER(PARTITION BY region ORDER BY sale_amount DESC) AS rank_no
+FROM sales;
+
+
+-- Q3: Dense Rank within region
+SELECT *, 
+       DENSE_RANK() OVER(PARTITION BY region ORDER BY sale_amount DESC) AS dense_rank_no
+FROM sales;
+
+
+-- Q4: Highest sale using FIRST_VALUE
+SELECT *, 
+       FIRST_VALUE(sale_amount) OVER(PARTITION BY region ORDER BY sale_amount DESC) AS highest_sale
+FROM sales;
+
+
+-- Q5: Lowest sale using LAST_VALUE
+SELECT *, 
+       LAST_VALUE(sale_amount) OVER(
+           PARTITION BY region 
+           ORDER BY sale_amount ASC 
+           ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+       ) AS lowest_sale
+FROM sales;
+
+
+-- Q6: 2nd highest sale using NTH_VALUE
+SELECT *, 
+       NTH_VALUE(sale_amount, 2) OVER(
+           PARTITION BY region 
+           ORDER BY sale_amount DESC 
+           ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+       ) AS second_highest_sale
+FROM sales;
+
+
+-- Q7: Next sale using LEAD (by date)
+SELECT *, 
+       LEAD(sale_amount) OVER(PARTITION BY region ORDER BY sale_date) AS next_sale
+FROM sales;
+
+
+-- Q8: Previous sale using LAG (by date)
+SELECT *, 
+       LAG(sale_amount) OVER(PARTITION BY region ORDER BY sale_date) AS previous_sale
+FROM sales;
+
+
+-- Q9: Difference from previous sale
+SELECT *,
+       sale_amount - LAG(sale_amount) OVER(PARTITION BY region ORDER BY sale_date) AS diff_from_prev
+FROM sales;
+
+
+-- Q10: Cumulative sum
+SELECT *,
+       SUM(sale_amount) OVER(
+           PARTITION BY region 
+           ORDER BY sale_amount DESC, sale_date ASC
+       ) AS cumulative_sum
+FROM sales;
+
+
+-- Q11: Sales greater than region average (Correlated)
+SELECT *
+FROM sales s1
+WHERE sale_amount > (
+    SELECT AVG(sale_amount)
+    FROM sales s2
+    WHERE s2.region = s1.region
+);
