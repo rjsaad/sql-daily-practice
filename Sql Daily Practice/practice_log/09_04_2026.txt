@@ -1,0 +1,34 @@
+##SQL Practice – 2026-04-09
+
+##Topics
+Window Functions
+Ranking Functions
+LEAD / LAG
+FIRST_VALUE / LAST_VALUE / NTH_VALUE
+Cumulative Sum
+Correlated Subqueries
+Questions Attempted
+Row number within region ✅
+Rank within region ✅
+Dense rank within region ✅
+Highest sale using FIRST_VALUE ✅
+Lowest sale using LAST_VALUE ✅
+2nd highest sale using NTH_VALUE ⚠️
+Next sale using LEAD ⚠️
+Previous sale using LAG ⚠️
+Difference using LAG ✅
+Cumulative sum using SUM OVER ⚠️
+Sales greater than region average (correlated subquery) ✅
+
+
+##Learnings
+ROW_NUMBER, RANK, DENSE_RANK handle ties differently
+FIRST_VALUE gives value but does not filter rows
+LAST_VALUE and NTH_VALUE need proper window frame
+Default window frame can cause wrong results
+LEAD and LAG require ORDER BY
+LAG returns NULL for first row
+SUM OVER is used for cumulative sum
+ORDER BY changes meaning (amount vs date)
+Correlated subquery uses outer query column
+Subquery with GROUP BY returns multiple rows
