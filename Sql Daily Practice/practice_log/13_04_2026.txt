@@ -1,0 +1,98 @@
+## SQL Practice – 2026-04-12 to 2026-04-13
+
+---
+
+## Topics
+
+### Day 1
+- SELECT, WHERE
+- DISTINCT
+- ORDER BY, LIMIT
+- GROUP BY + HAVING
+- Aggregate functions (SUM, AVG, MAX, MIN, COUNT)
+- Basic subqueries
+
+### Day 2
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- JOIN direction logic
+- COUNT with JOIN
+- NULL handling in JOIN
+- GROUP BY with JOIN
+
+---
+
+## Questions Attempted
+
+### Day 1
+- Filter employees by department (WHERE) ✅
+- Get distinct departments ✅
+- Total salary per department (GROUP BY + SUM) ✅
+- Average salary per department (GROUP BY + AVG) ✅
+- Employees above company average salary (subquery) ✅
+- Max salary per department (GROUP BY + MAX) ⚠️
+- Second highest salary (attempted) ⚠️
+- Top 2 salaries using ORDER BY + LIMIT ✅
+
+---
+
+### Day 2
+- Employee with department name (INNER JOIN) ✅
+- All employees with department (LEFT JOIN) ✅
+- All departments with employees (LEFT JOIN reversed) ✅
+- Count employees per department (GROUP BY + JOIN) ⚠️ (direction confusion initially, later fixed)
+- Employees without department (LEFT JOIN + IS NULL) ⚠️ (initial mistake using !=)
+- Filter employees by department name using JOIN + WHERE ✅
+
+---
+
+## Learnings
+
+### SQL Basics
+- GROUP BY requires proper column selection
+- ORDER BY defaults to ASC
+- DISTINCT removes duplicate rows
+- Subqueries must return correct structure (single vs multiple rows)
+
+---
+
+### JOIN Concepts
+- INNER JOIN returns only matching records
+- LEFT JOIN keeps left table fully
+- RIGHT JOIN keeps right table fully
+- JOIN direction depends on question requirement
+- NULL in JOIN means no match found
+
+---
+
+### Aggregation with JOIN
+- COUNT(e.id) avoids counting NULL rows
+- GROUP BY works after JOIN
+- Selecting correct LEFT table is critical for correct output
+
+---
+
+### Common Mistakes Fixed
+- Confusing JOIN direction
+- Using `!=` instead of `IS NULL`
+- Using wrong table as base in LEFT JOIN
+- Misunderstanding NULL behavior in joins
+- Forgetting GROUP BY rules
+
+---
+
+## Overall Progress (2 Days)
+
+### Strengths
+- Good understanding of basic SQL queries
+- JOIN concept improved significantly
+- GROUP BY + aggregation is becoming stable
+- Logical thinking improving
+
+### Weak Areas
+- Subquery structuring (intermediate level)
+- Window functions (still needs reinforcement)
+- Complex multi-step query breakdown
+- JOIN + aggregation combined logic
+
