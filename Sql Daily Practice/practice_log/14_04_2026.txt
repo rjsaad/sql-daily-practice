@@ -1,0 +1,46 @@
+## SQL Practice – 2026-04-14 
+
+---
+
+## Topics Covered
+- JOIN (INNER, LEFT)
+- GROUP BY with JOIN
+- Subqueries (correlated)
+- CTE (WITH clause)
+- HAVING vs WHERE
+- Aggregation + filtering logic
+
+---
+
+## Questions Practiced
+
+### JOIN Practice
+- Employee with department name (INNER JOIN) ✅
+- All employees with departments (LEFT JOIN) ✅
+- Employees without department (NULL check) ✅
+
+### Aggregation Practice
+- Count employees per department ✅
+- Department-wise average salary ✅
+- Departments with more than 1 employee (CTE) ✅
+
+### Subqueries
+- Employees earning more than company average salary ✅
+- Employees earning more than department average salary ✅
+- Correlated subquery (department-wise comparison) ✅
+
+### Advanced Filtering
+- Departments where avg salary > company avg salary ⚠️ (needed guidance)
+
+---
+
+## Learnings
+
+- JOIN direction decides data completeness
+- LEFT JOIN keeps main table intact
+- NULL means no match in JOIN
+- GROUP BY + HAVING used for filtered aggregation
+- Correlated subquery compares row with group
+- CTE helps break complex logic into steps
+
+
