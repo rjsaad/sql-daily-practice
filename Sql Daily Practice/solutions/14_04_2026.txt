@@ -1,0 +1,75 @@
+-- SQL Practice – 2026-04-14 (Day 4)
+-- Topics: JOIN, GROUP BY, Subquery, CTE
+
+---------------------------------------------------
+-- Q1: Show employee name + department name
+---------------------------------------------------
+SELECT e.name, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.id;
+
+---------------------------------------------------
+-- Q2: Count employees in each department
+---------------------------------------------------
+SELECT d.department_name, COUNT(e.id) AS total_employees
+FROM departments d
+LEFT JOIN employees e
+ON d.id = e.department_id
+GROUP BY d.department_name;
+
+---------------------------------------------------
+-- Q3: Find employees who do not belong to any department
+---------------------------------------------------
+SELECT e.name, e.department_id
+FROM employees e
+LEFT JOIN departments d
+ON e.department_id = d.id
+WHERE d.id IS NULL;
+
+---------------------------------------------------
+-- Q4: Employees earning more than their department average
+---------------------------------------------------
+SELECT *
+FROM employees e1
+WHERE salary >
+(
+    SELECT AVG(salary)
+    FROM employees e2
+    WHERE e2.department_id = e1.department_id
+);
+
+---------------------------------------------------
+-- Q5: Department-wise average salary
+---------------------------------------------------
+SELECT d.department_name, AVG(e.salary) AS avg_salary
+FROM departments d
+LEFT JOIN employees e
+ON d.id = e.department_id
+GROUP BY d.department_name;
+
+---------------------------------------------------
+-- Q6: Departments where avg salary > company average salary
+---------------------------------------------------
+SELECT d.department_name, AVG(e.salary) AS dept_avg
+FROM departments d
+LEFT JOIN employees e
+ON d.id = e.department_id
+GROUP BY d.department_name
+HAVING AVG(e.salary) > (
+    SELECT AVG(salary) FROM employees
+);
+
+---------------------------------------------------
+-- Q7: Departments having more than 1 employee (CTE)
+---------------------------------------------------
+WITH temp_table AS (
+    SELECT d.department_name, COUNT(e.id) AS t_emp
+    FROM departments d
+    LEFT JOIN employees e
+    ON d.id = e.department_id
+    GROUP BY d.department_name
+)
+SELECT *
+FROM temp_table
+WHERE t_emp > 1;
