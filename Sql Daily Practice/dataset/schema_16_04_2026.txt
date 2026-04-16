@@ -1,0 +1,27 @@
+CREATE TABLE patients (
+    patient_id INT PRIMARY KEY,
+    name TEXT,
+    age INT,
+    gender TEXT
+);
+
+CREATE TABLE doctors (
+    doctor_id INT PRIMARY KEY,
+    name TEXT,
+    specialization TEXT
+);
+
+CREATE TABLE visits (
+    visit_id INT PRIMARY KEY,
+    patient_id INT REFERENCES patients(patient_id),
+    doctor_id INT REFERENCES doctors(doctor_id),
+    visit_date DATE,
+    fee INT
+);
+
+CREATE TABLE treatments (
+    treatment_id INT PRIMARY KEY,
+    visit_id INT REFERENCES visits(visit_id),
+    treatment_name TEXT,
+    cost INT
+);
