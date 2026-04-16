@@ -1,0 +1,63 @@
+## SQL Practice – 2026-04-15 (Day 5)
+
+---
+
+## Topics Covered
+- LEFT JOIN (multi-table)
+- JOIN chaining (3 tables)
+- GROUP BY with aggregation
+- Correlated thinking (basic)
+- NULL handling in joins
+- Basic revenue calculation logic
+
+---
+
+## Questions Practiced
+
+### JOIN Practice
+- Show all patients with their visits ✅
+- Show doctor name with patient name via visits table ✅
+- Multi-table join (doctor → visits → patients) ✅
+
+### Aggregation Practice
+- Count total visits per doctor ✅
+- Doctor with maximum number of visits (ORDER BY + LIMIT) ✅
+
+### NULL / Missing Data
+- Patients who never visited any doctor (LEFT JOIN + IS NULL) ✅
+
+### Revenue Logic
+- Total revenue per doctor (fee only) ⚠️
+- Total revenue per doctor (fee + treatment cost) ⚠️
+
+### Concept Practice
+- Multi-table JOIN structure understanding (3 tables) ✅
+
+---
+
+## Learnings
+
+- LEFT JOIN expands one-to-many relationships
+- JOIN can duplicate rows (important for SUM mistakes)
+- GROUP BY needed for aggregation after JOIN
+- ORDER BY + LIMIT can replace MAX logic
+- Multi-table joins must follow chain logic (A → B → C)
+- Revenue calculation needs careful handling of duplicate rows
+
+---
+
+## Mistakes / Gaps Identified
+
+- Confusion in multi-table aggregation (duplicate rows issue)
+- SUM across JOINed tables needs caution
+- Need more practice in join-based calculations
+
+---
+
+## Progress Summary
+
+✔ JOIN (strong improvement)  
+✔ GROUP BY (stable)  
+✔ Subquery (basic understanding)  
+✔ Multi-table JOIN (learning phase)  
+⚠ Advanced aggregation logic (needs practice)
