@@ -1,0 +1,75 @@
+## SQL Practice – 2026-04-17 (Day 6)
+
+---
+
+## Topics Covered
+- COUNT(*) vs COUNT(column)
+- NULL handling (IS NULL vs = NULL)
+- LEFT JOIN behavior
+- GROUP BY aggregation logic
+- HAVING vs WHERE concept
+- One-to-many relationship effect in JOINs
+- Duplicate row generation in JOIN
+
+---
+
+## Questions Practiced
+
+### COUNT & NULL Trap
+- Difference between COUNT(*) and COUNT(salary) ✔
+
+### NULL Filtering
+- Why `salary = NULL` does not work ✔
+- Correct usage of IS NULL ✔
+
+### LEFT JOIN + COUNT
+- Departments with employees and without employees ✔
+- COUNT behavior with NULL values ✔
+
+### JOIN Multiplication Trap
+- One employee having multiple projects (row duplication) ✔
+
+### GROUP BY + HAVING Concept
+- Why HAVING is used instead of WHERE ✔
+
+### Final JOIN Trap
+- LEFT JOIN with COUNT(*) returning more rows than expected ✔
+
+---
+
+## Learnings
+
+- COUNT(*) counts all rows including NULL-containing rows
+- COUNT(column) ignores NULL values
+- NULL cannot be compared using = operator
+- LEFT JOIN keeps all rows from left table
+- JOIN can increase row count (one-to-many expansion)
+- GROUP BY changes calculation scope
+- HAVING filters aggregated results, WHERE does not
+- JOIN duplication can lead to incorrect aggregates
+
+---
+
+## Mistakes Identified
+
+- Confusion between grouped vs total rows
+- Incorrect AVG calculation due to misunderstanding NULL handling
+- Misunderstanding of JOIN row multiplication
+- Initial confusion about LEFT JOIN result size
+
+---
+
+## Key Takeaway
+
+👉 SQL is not just syntax — it is **data behavior understanding**
+👉 Most errors come from JOIN + NULL + aggregation interaction
+
+---
+
+## Progress Summary
+
+✔ Beginner SQL → Strong foundation  
+✔ JOIN understanding → improving  
+✔ NULL handling → clear  
+✔ Aggregation logic → developing  
+⚠ Need practice: multi-step query building
