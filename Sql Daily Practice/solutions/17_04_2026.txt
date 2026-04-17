@@ -1,0 +1,86 @@
+-- SQL Practice – 2026-04-17 (Day 6)
+-- Topic: SQL Traps (COUNT, NULL, JOIN, GROUP BY)
+
+---------------------------------------------------
+-- Q1: COUNT(*) vs COUNT(column)
+
+Table: employees
+(id, name, salary)
+
+SELECT COUNT(*) FROM employees;
+SELECT COUNT(salary) FROM employees;
+
+-- ANSWER:
+-- COUNT(*) = counts all rows (including NULL salary rows)
+-- COUNT(salary) = counts only NON-NULL salaries
+
+
+---------------------------------------------------
+-- Q2: NULL comparison trap
+
+SELECT * FROM employees
+WHERE salary = NULL;
+
+-- ANSWER:
+-- Incorrect ❌
+-- NULL cannot be compared using =
+-- Correct query:
+-- WHERE salary IS NULL
+
+
+---------------------------------------------------
+-- Q3: LEFT JOIN + COUNT trap
+
+SELECT d.name, COUNT(e.id)
+FROM departments d
+LEFT JOIN employees e
+ON d.id = e.department_id
+GROUP BY d.name;
+
+-- ANSWER:
+-- All departments will appear (including those with no employees)
+-- Departments with no employees show COUNT = 0
+-- Because COUNT(column) ignores NULL values
+
+
+---------------------------------------------------
+-- Q4: One-to-many JOIN duplication
+
+SELECT e.name, p.project_id
+FROM employees e
+JOIN projects p
+ON e.id = p.emp_id;
+
+-- ANSWER:
+-- One employee appears multiple times
+-- Because one employee can have multiple projects
+-- This is ONE-TO-MANY relationship
+
+
+---------------------------------------------------
+-- Q5: WHERE vs HAVING trap
+
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department
+WHERE AVG(salary) > 50000;
+
+-- ANSWER:
+-- Incorrect ❌
+-- WHERE cannot filter aggregated values
+-- Correct:
+-- HAVING AVG(salary) > 50000
+
+
+---------------------------------------------------
+-- Q6: Final JOIN COUNT trap
+
+SELECT COUNT(*)
+FROM employees e
+LEFT JOIN projects p
+ON e.id = p.emp_id;
+
+-- ANSWER:
+-- Result is NOT equal to number of employees
+-- Because JOIN duplicates rows (one-to-many)
+-- Example: employee with 2 projects appears twice
